@@ -1,12 +1,11 @@
 const express = require("express")
 
 const app = express()
+app.use(express.json())
 
-app.get("/users", (request, response) => {
-  const { page, limit } = request.query
+const routes = require("./routes")
 
-  response.send(`página: ${page}. Mostrar: ${limit}`)
-})
+app.use(routes)
 
 const PORT = 3333
 app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`))
