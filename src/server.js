@@ -4,12 +4,16 @@ const AppError = require("./utils/AppError")
 
 const express = require("express")
 
+const database = require("./database/sqlite")
+
 const app = express()
 app.use(express.json())
 
 const routes = require("./routes")
 
 app.use(routes)
+
+database()
 
 app.use(( error, request, response, next ) => {
   if(error instanceof AppError) {
