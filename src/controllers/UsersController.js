@@ -9,8 +9,14 @@ class UsersController {
     const checkUsersExists = await database.get("SELECT * FROM users WHERE email = (?)", [email])
 
     if(checkUsersExists) {
-      throw new AppError("Este e-mail já está em uso")
+      throw new AppError("Este e-mail já está em uso.")
     }
+
+    await database.run(
+      "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+      [name, email, password]
+    )
+
     return response.status(201).json()
   }
 }
