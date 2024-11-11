@@ -8,7 +8,7 @@ module.exports = {
       filename: path.resolve(__dirname, "src", "database", "database.db")
     },
     migrations: {
-      direcotory: path.resolve(__dirname, "src", "database", "knex", "migrations")
+      directory: path.resolve(__dirname, "src", "database", "knex", "migrations")
     },
     useNullAsDefault: true
   },
