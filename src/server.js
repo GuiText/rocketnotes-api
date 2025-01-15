@@ -1,13 +1,16 @@
 require("express-async-errors")
 const AppError = require("./utils/AppError")
 const migrationsRun = require("./database/sqlite/migrations")
+const uploadConfig = require("./configs/upload")
 
 const express = require("express")
+const routes = require("./routes")
 
 const app = express()
 app.use(express.json())
 
-const routes = require("./routes")
+// carregando a foto do usuário no insomnia
+app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER))
 
 app.use(routes)
 
